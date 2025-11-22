@@ -1,83 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RATA Portfolio Magazine</title>
-    <style>
-        body { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
-            background-color: #f0f0f0; 
-        }
-        #flipbook {
-            /* This will be set by Turn.js script, but we center it */
-            margin: 0 auto; 
-        }
-        .page {
-            /* Ensure images fit within the pages */
-            width: 100%;
-            height: 100%;
-            background-color: white; /* Default background */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden; /* Hide any content that spills */
-        }
-        .page img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ensures the whole image is visible */
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Flipbook</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://www.turnjs.com/lib/turn.min.js"></script>
+
+  <style>
+    body { background: #f0f0f0; display: flex; justify-content: center; padding: 40px; }
+    #flipbook { width: 800px; height: 500px; }
+    #flipbook img { width: 100%; height: 100%; object-fit: cover; }
+  </style>
 </head>
+
 <body>
+  <div id="flipbook">
+    <div><img src="page.jpg"></div>
+    <div><img src="page1.jpg"></div>
+    <div><img src="page2.jpg"></div>
+    <!-- Add more pages here -->
+  </div>
 
-    <div id="flipbook">
-        <div class="hard page">
-            <img src="RATARationale.jpg" alt="Cover Image - Portrait" />
-        </div>
-
-        <div class="hard page">
-            <p style="text-align: center; padding-top: 50%;">Inside Cover</p>
-        </div>
-
-        <div class="page">
-            <img src="RATARationale2.jpg" alt="Content Page 1 - Landscape" />
-        </div>
-
-        <div class="page">
-            <img src="RATARationale3.jpg" alt="Content Page 2 - Landscape" />
-        </div>
-
-        <div class="hard page"></div>
-        <div class="hard page"></div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var coverRatio = 1 / 1.414; // Approx A4 portrait ratio (adjust if needed)
-            var landscapeRatio = 1.414 / 1; // Approx A4 landscape ratio (adjust if needed)
-
-            // Calculate the height based on the landscape pages for consistency
-            var pageHeight = 600; 
-            var pageWidth = pageHeight * landscapeRatio / 2; // Half the width of the open book
-
-            // The 'flipbook' width is the width of two open landscape pages
-            var bookWidth = pageHeight * landscapeRatio; 
-
-            // Initialize Turn.js
-            $("#flipbook").turn({
-                width: bookWidth,
-                height: pageHeight,
-                autoCenter: true,
-                display: 'double', // Show two pages at a time
-                acceleration: true // Use hardware acceleration for smoother animation
-            });
-        });
-    </script>
-
+  <script>
+    $("#flipbook").turn({
+      width: 800,
+      height: 500,
+      autoCenter: true
+    });
+  </script>
 </body>
 </html>
