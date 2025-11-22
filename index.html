@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Test Flipbook</title>
+<title>RATA Flipbook Test</title>
 
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -35,6 +35,7 @@ html, body {
 }
 </style>
 </head>
+
 <body>
 
 <div id="flipbook">
@@ -44,14 +45,21 @@ html, body {
 </div>
 
 <script>
-$(document).ready(function(){
+$(window).on("load", function() {
   $("#flipbook").turn({
     width: $("#flipbook").width(),
     height: $("#flipbook").height(),
     autoCenter: true,
-    display: "single", // single-page mode works for mixed portrait/landscape
+    display: "single",   // single-page mode handles mixed portrait/landscape
     elevation: 50,
     gradients: true
+  });
+
+  $(window).on("resize", function() {
+    $("#flipbook").turn("size",
+      $("#flipbook").width(),
+      $("#flipbook").height()
+    );
   });
 });
 </script>
